@@ -1,13 +1,11 @@
 Hi! I am logic-online!
 
-To run the code, you'll need to write a file `server/config-email.coffee`.
-Make it look like:
+You'll have to configure it like so:
 
-	module.exports =
-		from: 'Other Logic Online <my.email@gmail.com>'
-		service: 'Gmail'
-		auth:
-			user: 'my.email@gmail.com'
-			pass: 'my-password'
+	heroku config:add \
+		EMAIL_FROM=“my.email@gmail.com” \
+		EMAIL_SERVICE=“Gmail” \
+		EMAIL_USERNAME=”my.email@gmail.com” \
+		EMAIL_PASSWORD=”my.password”
 
 

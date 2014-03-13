@@ -6,9 +6,9 @@ lolDeduce = require '../assets/script/lol-deduce'
 
 templatesDir = path.join __dirname, 'email-templates'
 
-emailInfo = require './config-email'
+#emailInfo = require './config-email'
 
-transport = nodeMailer.createTransport 'SMTP', emailInfo
+transport = nodeMailer.createTransport# 'SMTP', emailInfo
 
 fs = require 'fs'
 
