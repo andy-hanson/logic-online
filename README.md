@@ -8,4 +8,3 @@ You'll have to configure it like so:
 		EMAIL_USERNAME=”my.email@gmail.com” \
 		EMAIL_PASSWORD=”my.password”
 
-
