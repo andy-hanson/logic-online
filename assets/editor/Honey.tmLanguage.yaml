@@ -1,0 +1,61 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: Honey
+scopeName: source.honey
+fileTypes:
+- honey
+uuid: 1e7103a6-889a-11e3-a86e-d231feb1dc81
+
+
+patterns:
+
+
+- name: entity.function
+  match: '(axiom|rule) ([^:]+)(:)'
+  captures:
+    '1':
+      name: keyword
+    '2':
+      name: entity.name.function
+    '3':
+      name: comment
+
+- name: constant.numeric
+  comment: labels
+  match: \S+(:)
+  captures:
+    '1':
+      name: comment
+
+- name: entity.name.tag
+  comment: justification
+  match: (\|)(\S+)
+  captures:
+    '1':
+      name: comment
+    '2':
+      name: entity.other.inherited-class
+
+- name: constant.character
+  match: ','
+
+- name: keyword
+  match: ⇒
+
+
+- name: comment
+  match: \\.*
+
+- name: support.function
+  match: '[\.∨&∧~¬→↔⊕]|->|<->|xor'
+
+
+- name: support.class
+  comment:
+    A docstring.
+    We expect it to be followed by another meta,
+    or by a blank line.
+  begin: ^\s*(doc)$
+  beginCaptures:
+    '1':
+      name: constant.language
+  end: ^$

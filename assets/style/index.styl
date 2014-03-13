@@ -1,0 +1,158 @@
+@require 'font'
+
+centered()
+	margin-left auto
+	margin-right auto
+
+margin-v(amount)
+	margin-top amount
+	margin-bottom amount
+
+.textBubble
+	centered()
+	border-radius 40px
+	margin-top 20px
+	margin-bottom 20px
+	padding 20px
+	width 480px
+
+#code
+	centered()
+	width 800px
+
+.CodeMirror
+	code()
+	border-radius 15px
+	margin-v 5px
+	font-size 16px
+	height auto
+
+.CodeMirror-scroll
+	overflow-y hidden
+	overflow-x auto
+
+#buttons
+	centered()
+	border-radius 20px
+	padding 5px
+	width 320px
+	background linear-gradient(45deg, #ccc, #888)
+	text-align center
+
+#buttons button
+	margin 4px
+	border-radius 4px
+	border-style none
+	font-size 20px
+	background-color white
+#buttons button:hover
+	background-color yellow
+#checkButton
+	color forestGreen
+#exerciseButton
+	color dodgerBlue
+#hintButton
+	color orange
+#bragButton
+	color mediumOrchid
+#aboutButton
+	color black
+#githubButton
+	color pink
+
+#about
+	background-color #ccf
+
+#brag
+	background linear-gradient(0deg, #ffc, #fff)
+
+#brag div
+	text-align center
+
+#brag .formTitle
+	formTitle()
+
+#brag input
+	denseText()
+	margin-bottom 16px
+
+#brag textarea
+	centered()
+	denseText()
+	width 400px
+	font-size 16px
+
+#bragSubmit
+	background forestGreen
+	color white
+	border-radius 10px
+	border-style none
+	centered()
+	formTitle()
+	font-size 150%
+
+#bragSubmit:hover
+	color yellow
+
+#exercises
+	background linear-gradient(135deg, #eff, #ffe)
+
+.exerciseNumber
+	width 30px
+	text-align center
+.exerciseNumber a
+	number()
+	text-align center
+	text-decoration none
+.exerciseNumber a:hover
+	color cyan
+
+.title
+	title()
+	margin-bottom 12px
+	font-size 28px
+	text-align center
+
+#explain
+	background linear-gradient(135deg, #ffe, #fef)
+
+#hint
+	background linear-gradient(135deg, #fef, #eff)
+
+#aboutKeys
+	centered()
+	margin-v 10px
+	text-align center
+
+#aboutKeys td
+	padding 5px
+
+.key
+	character()
+	width 30px
+
+
+.checkResult
+	message()
+	text-align center
+	background-color white
+
+#checkSuccess
+	background-color #dfb
+
+#checkFail
+	background-color #fcc
+
+
+.checkSuccessLine
+	lineNumber()
+	color #480
+
+
+.checkFailPos
+	lineNumber()
+	color red
+	margin 10px
+
+.checkFailExplain
+	font-weight bold

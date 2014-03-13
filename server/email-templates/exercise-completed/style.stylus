@@ -1,0 +1,12 @@
+#userName
+	font-weight bold
+#exerciseNumber
+	font-weight bold
+	text-decoration none
+div#comment
+	margin 20px
+	font-style italic
+#solution
+	margin 20px
+	white-space pre
+	font-family mono

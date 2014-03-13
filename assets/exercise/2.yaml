@@ -1,0 +1,14 @@
+explain: |
+	DESCRIBE ME
+
+setup: |
+	SET ME UP
+
+answer: |
+	ANSWER ME
+
+finish: |
+	FINISH ME
+
+hint: |
+	HINT ME

@@ -1,0 +1,40 @@
+explain: |
+	Welcome to logic-online!
+
+	BLAH BLAH BLAH.
+
+	Our first rule is called "repeat".
+
+	BLAH BLAH BLAH.
+
+	You'll have to fill in the middle of this proof.
+
+	Press the **✔** button to check your proof.
+
+
+setup: |
+	\ This describes repeat within our language.
+	repeat a: a ⇒
+		a
+
+	\ This says that x is a Boolean we can refer to.
+	\ Unlike a, it can take on only one value.
+	declare x
+
+	\ Here is our premise.
+	\ We give it the *label* "yesX" so we can refer to it later.
+	yesX: x
+
+	\ Now let's use that premise.
+	\ This line is *justified* by the rule "repeat" applied to the line "yesX".
+	revengeOfX: x	|repeat yesX
+
+answer: |
+	xRidesAgain: x	|repeat yesX
+
+finish: |
+	\ You'll have to make a line labeled "xRidesAgain", or this will fail.
+	x	|repeat xRidesAgain
+
+hint: |
+	The answer is "xRidesAgain: x	|repeat yesX".

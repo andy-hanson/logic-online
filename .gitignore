@@ -1,0 +1,4 @@
+node_modules
+doc
+public
+server/config-email.coffee
