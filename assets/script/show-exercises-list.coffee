@@ -4,7 +4,6 @@ getData = require './get-data'
 haveShown = false
 
 module.exports = ->
-	($ '#exercises').toggle()
 
 	unless haveShown
 		haveShown = yes
@@ -25,3 +24,5 @@ module.exports = ->
 					.append desc
 
 				table.append ex
+
+			($ '#exercises').toggle()

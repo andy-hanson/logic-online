@@ -10,6 +10,6 @@ module.exports = (code) ->
 
 	$.post '/brag', data, (response) ->
 		if response.success
-			alert 'Your request has not been sent, because this feature is TODO.'
+			alert 'Tada!'
 		else
 			alert response.explain

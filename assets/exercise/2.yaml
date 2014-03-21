@@ -1,14 +1,39 @@
+title: Slippery in Seattle
+
 explain: |
-	DESCRIBE ME
+	Some statements are implied by others.
+	For example:
+
+		rainy → wet
+
+	Every time we know `rainy`, we know `wet`.
+
+	We represent this like so:
+
+		implication: rainy → wet
+		premise: rainy
+		wet |implication premise
+
+	This is a new type of justification: one that takes an *argument*.
+
+	Use `Ctrl+Alt+>` to type `→`.
 
 setup: |
-	SET ME UP
+	declare rainy wet slippery
+
+	rainIsWater: rainy → wet
+	waterIsSlippery: wet → slippery
+	seattle: rainy
 
 answer: |
-	ANSWER ME
+	wetSeattle: wet  |rainIsWater seattle
+	slipperySeattle: slippery |waterIsSlippery wetSeattle
 
 finish: |
-	FINISH ME
+	repeat a: a ⇒
+		a
+
+	slippery	|repeat slipperySeattle
 
 hint: |
 	HINT ME

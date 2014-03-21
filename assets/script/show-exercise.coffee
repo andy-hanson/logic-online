@@ -1,10 +1,16 @@
 $ = require 'jquery'
-{ markdown } = require 'markdown-js'
+# { markdown } = require 'markdown-js'
+markdown = require 'marked'
 
 module.exports = showExercise = (code, exercise) ->
 	($ '#explainText').html markdown exercise.explain
 	($ '#hintText').html markdown exercise.hint
-	($ '#exerciseNumber').html " #{exercise.number}"
+	($ '#exerciseNumber').text exercise.number
+	($ '#exerciseTitle').text exercise.title
+
+	nextExerciseNumber = parseInt(exercise.number) + 1
+	($ '#nextExercise').attr 'href', "/##{nextExerciseNumber}"
+	($ '#nextExerciseNumber').text nextExerciseNumber
 
 	code.setup.setValue exercise.setup.trim()
 	code.editor.setValue ''

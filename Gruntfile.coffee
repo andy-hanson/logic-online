@@ -14,7 +14,7 @@ module.exports = (grunt) ->
 					debug: yes # enables source maps
 
 		clean:
-			all: [ 'node_modules', 'doc', 'public' ]
+			all: [ 'assets/exercise/list.yaml', 'doc', 'node_modules', 'public' ]
 			pre: [ 'public' ]
 
 		codo:
@@ -58,7 +58,7 @@ module.exports = (grunt) ->
 				tasks: [ 'copy:image' ]
 			exercise:
 				files: 'assets/exercise/**/*'
-				tasks: [ 'copy:exercise' ]
+				tasks: [ 'copy:exercise', 'exec:listExercises' ]
 
 		stylus:
 			files:
@@ -85,23 +85,28 @@ module.exports = (grunt) ->
 				dest: 'public/image/'
 
 		exec:
+			listExercises:
+				'assets/exercise/gen-list.coffee'
+			#dev:
+			#	options:
+			#		stdout: true
+			#		stderr: true
+			#	command: './node_modules/node-dev/bin/node-dev server/web.coffee'
+
+		nodemon:
 			dev:
+				script: 'server/web.coffee'
 				options:
-					stdout: true
-					stderr: true
-				command: './node_modules/node-dev/bin/node-dev server/web.coffee'
+					#ignore: 'assets' # don't need server reset for client assets
+					watch: [ 'server' ]
 
 		concurrent:
 			dev:
-				tasks: [ 'exec:dev', 'watch' ]
+				tasks: [ 'nodemon', 'watch' ]
 				options:
 					logConcurrentOutput: true
 
 	(require 'load-grunt-tasks') grunt
-	grunt.loadNpmTasks 'grunt-concurrent'
-	grunt.loadNpmTasks 'grunt-exec'
-	grunt.loadNpmTasks 'grunt-browserify'
-	grunt.loadNpmTasks 'grunt-codo'
 
 	grunt.registerTask 'heroku:development', [
 		'deploy-assets'
@@ -111,7 +116,8 @@ module.exports = (grunt) ->
 		'clean:pre',
 		'copy',
 		'browserify',
-		'stylus'
+		'stylus',
+		'exec:listExercises'
 	]
 
 	grunt.registerTask 'default', [

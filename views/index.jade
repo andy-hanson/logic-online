@@ -5,7 +5,6 @@ block style
 	link(rel='stylesheet', href='/style/vendor/codemirror.css')
 	link(rel='stylesheet', href='/style/index.css')
 
-
 block content
 	div#buttons
 		button#checkButton(type='button')
@@ -22,6 +21,7 @@ block content
 			button#githubButton
 				i(class='fa fa-github')
 				//github-alt
+
 	div#about.textBubble
 		div.title About
 		span.
@@ -30,6 +30,7 @@ block content
 		div.
 			Bugs? Probably!
 		a(href='mailto:hansoa2@rpi.edu') hansoa2@rpi.edu
+
 	div#brag.textBubble
 		form#bragForm
 			div.title Brag
@@ -44,29 +45,45 @@ block content
 				textarea#comment(rows=10)
 			div
 				input#bragSubmit(type='submit' value='Send')
+
 	div#exercises.textBubble
-		div.title Exercises
+		div.title All Exercises
 		table#exercisesTable
-	div#explain.textBubble
-		div#explainTitle.title
-			span Exercise
-			span#exerciseNumber
-		div#explainText
+
 	div#hint.textBubble
 		div#hintTitle.title Hint
-		span#hintText
+		div#hintText.md
+
 	div#checkSuccess.checkResult.textBubble
-		span Valid proof!
-		span#checkSuccessNPremises
-		span premises on lines
-		span#checkSuccessPremises
-		span .
+		div#checkSuccessWithPremises
+			span Valid proof!
+			span#checkSuccessNPremises
+			span premises on lines
+			span#checkSuccessPremises
+			span= '. '
+		div#checkSuccessNoPremises
+			span Valid proof! And you did it all without premises!
+		a#nextExercise
+			span= 'Next: Exercise '
+			span#nextExerciseNumber
+			// i(class = 'fa fa-forward')
+
 	div#checkFail.checkResult.textBubble
 
 	div#code
 		div#setup
 		div#editor
 		div#finish
+
+	div#explain.textBubble
+		div.title
+			span= 'Exercise '
+			span#exerciseNumber
+			span= ' - '
+			span#exerciseTitle
+		div#explainText.md
+		div#startProof.
+			Start proving!
 
 block script
 	script(src='/script/index.js')

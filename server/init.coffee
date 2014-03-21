@@ -16,7 +16,6 @@ exports.app = (app) ->
 	app.set 'views', path.join rootPath, 'views'
 	app.set 'view engine', 'jade'
 
-	# app.use express.methodOverride()
 	app.use morgan 'tiny'
 	app.use compress()
 	app.use express.static path.join rootPath, 'public'

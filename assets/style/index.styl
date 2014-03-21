@@ -4,7 +4,15 @@ centered()
 	margin-left auto
 	margin-right auto
 
-margin-v(amount)
+padding-x(amount)
+	padding-left amount
+	padding-right amount
+
+margin-x(amount)
+	margin-left amount
+	margin-right amount
+
+margin-y(amount)
 	margin-top amount
 	margin-bottom amount
 
@@ -34,7 +42,8 @@ margin-v(amount)
 #buttons
 	centered()
 	border-radius 20px
-	padding 5px
+	padding 6px
+	margin-bottom 12px
 	width 320px
 	background linear-gradient(45deg, #ccc, #888)
 	text-align center
@@ -43,7 +52,7 @@ margin-v(amount)
 	margin 4px
 	border-radius 4px
 	border-style none
-	font-size 20px
+	font-size 24px
 	background-color white
 #buttons button:hover
 	background-color yellow
@@ -57,6 +66,8 @@ margin-v(amount)
 	color mediumOrchid
 #aboutButton
 	color black
+#aboutButton:hover
+	cursor help
 #githubButton
 	color pink
 
@@ -116,12 +127,42 @@ margin-v(amount)
 #explain
 	background linear-gradient(135deg, #ffe, #fef)
 
+#explain .title
+	color forestgreen
+
+#startProof
+	text-align center
+	title()
+	font-size 24px
+	color blue
+#startProof:hover
+	color purple
+	cursor pointer
+
+.md pre
+	background linear-gradient(0deg, #ffc080, #ffffc0)
+	border-radius 1em
+	margin-x 3em
+	padding 1em
+
+.md code
+	code()
+	background linear-gradient(0deg, #ffc080, #ffffc0)
+	border-radius 1em
+	padding-x 0.2em
+
+.md pre code
+	background none
+	border-radius none
+	padding-x 0
+
+
 #hint
 	background linear-gradient(135deg, #fef, #eff)
 
 #aboutKeys
 	centered()
-	margin-v 10px
+	margin-y 10px
 	text-align center
 
 #aboutKeys td
@@ -138,10 +179,14 @@ margin-v(amount)
 	background-color white
 
 #checkSuccess
-	background-color #dfb
+	background radial-gradient(#dfb 50%, #ffd)
+	//background-color #dfb
+
+#nextExercise
+	text-decoration none
 
 #checkFail
-	background-color #fcc
+	background radial-gradient(#fcc 50%, #f88)
 
 
 .checkSuccessLine
@@ -149,10 +194,12 @@ margin-v(amount)
 	color #480
 
 
-.checkFailPos
+.checkFailLine
 	lineNumber()
 	color red
 	margin 10px
+	vertical-align middle
+	font-size 150%
 
 .checkFailExplain
 	font-weight bold

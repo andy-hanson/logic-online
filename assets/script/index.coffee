@@ -9,7 +9,7 @@ writeKeysTable = require './writeKeysTable'
 brag = require './brag'
 
 showDocument = (code) ->
-	for x in [ '#about', '#brag', '.checkResult', '#exercises', '#hint' ]
+	for x in [ '#about', '#brag', '#code', '.checkResult', '#exercises', '#hint' ]
 		($ x).hide()
 
 	($ '#cover').fadeOut 300, ->
@@ -30,6 +30,11 @@ showDocument = (code) ->
 
 	click '#hintButton', ->
 		($ '#hint').toggle()
+
+	click '#startProof', ->
+		($ '#code').show()
+		code.editor.refresh()
+		code.finish.refresh()
 
 	click '#exerciseButton', showExercisesList
 

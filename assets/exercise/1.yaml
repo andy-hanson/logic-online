@@ -1,27 +1,72 @@
+title: Intro of Interesting Intrigue
+
 explain: |
-	Welcome to logic-online!
+	Welcome to Logic Online!
 
-	BLAH BLAH BLAH.
+	Here you can complete exercises to learn deduction.
+	You will write statements in a computerized format,
+	and apply rules to get new statements.
 
-	Our first rule is called "repeat".
+	Our first statement type is called the *atom*.
+	It looks like this:
 
-	BLAH BLAH BLAH.
+		x
 
-	You'll have to fill in the middle of this proof.
+	Pretty simple, huh?
+	It represents a 'simple' statement with no interesting parts.
+	There are many atoms: `iAmTheCoolest`, `deductionIsFun`, `asdfghjkl`.
+	(Atom names can only use letters.)
 
-	Press the **✔** button to check your proof.
+	To use an atom, first you'll have to say it exists.
 
+		declare x
+
+	Then you can state that it is true by simply writing it.
+
+		x
+
+	You can label your statement like so:
+
+		myStatement: x
+
+	We can refer to the line as `myStatement` later on.
+
+	Our first rule is called `repeat`.
+	Put simply, every time we've said something, we can repeat it.
+	This is the most common form of argument used in real life.
+
+	Let's see it in action:
+
+		sayItOnce: it
+		sayItAgain: it	|repeat sayItOnce
+
+	The symbol `|` distinguishes the statement from its *justification*.
+	The justification applies the rule `repeat` to the line labeled `first`.
+	Not every line can be justified.
+	If the justification is missing, the line is a *premise*.
+	You shouldn't be writing any premises;
+	every line you write should be justified.
+
+
+	Now you're ready for **your first exercise**.
+	You'll have to fill in the middle of the proof shown below.
+	The top and bottom parts can't be modified.
+
+	If you get stuck, press the
+	<i class='fa fa-puzzle-piece'/> button at the top of the page.
+
+	Press the <i class='fa fa-check'/> button when you're done.
 
 setup: |
 	\ This describes repeat within our language.
+	\ Don't worry how it works just yet.
 	repeat a: a ⇒
 		a
 
 	\ This says that x is a Boolean we can refer to.
-	\ Unlike a, it can take on only one value.
 	declare x
 
-	\ Here is our premise.
+	\ Here is a premise.
 	\ We give it the *label* "yesX" so we can refer to it later.
 	yesX: x
 
@@ -37,4 +82,4 @@ finish: |
 	x	|repeat xRidesAgain
 
 hint: |
-	The answer is "xRidesAgain: x	|repeat yesX".
+	The answer is `xRidesAgain: x	|repeat yesX`.
