@@ -12,8 +12,8 @@
 		"url": "https://github.com/andy-hanson/logic-online.git"
 	},
 	"dependencies": {
-		"lol-deduce": "",
 		"express": "4.0.0-rc3",
+		"express-params": "0.0.3",
 		"body-parser": "1.0.0",
 		"brfs": "1.0.0",
 		"coffee-script": "1.7.1",
@@ -36,7 +36,6 @@
 		"jade": "1.2.0",
 		"load-grunt-tasks": "0.4.0",
 		"marked": "~0.3.2",
-		"markdown-js": "0.0.3",
 		"morgan": "1.0.0",
 		"nodemailer": "0.6.1",
 		"node-dev": "2.1.6",

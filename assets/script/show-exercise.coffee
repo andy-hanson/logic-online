@@ -1,5 +1,4 @@
 $ = require 'jquery'
-# { markdown } = require 'markdown-js'
 markdown = require 'marked'
 
 module.exports = showExercise = (code, exercise) ->
@@ -9,7 +8,7 @@ module.exports = showExercise = (code, exercise) ->
 	($ '#exerciseTitle').text exercise.title
 
 	nextExerciseNumber = parseInt(exercise.number) + 1
-	($ '#nextExercise').attr 'href', "/##{nextExerciseNumber}"
+	($ '#nextExercise').attr 'href', "./#{nextExerciseNumber}"
 	($ '#nextExerciseNumber').text nextExerciseNumber
 
 	code.setup.setValue exercise.setup.trim()

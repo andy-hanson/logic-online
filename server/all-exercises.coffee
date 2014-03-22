@@ -2,9 +2,9 @@ fs = require 'fs'
 path = require 'path'
 yaml = require 'yamljs'
 
-allExercises = []
-
 nExercises = 3
+
+allExercises = {}
 
 for index in [1..nExercises]
 	loc =

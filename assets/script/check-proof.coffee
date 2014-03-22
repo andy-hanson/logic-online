@@ -4,6 +4,8 @@ lolDeduce = require 'lol-deduce'
 CHEAT = yes
 
 module.exports = checkProof = (code) ->
+	($ '#checkResultContainer').slideDown()
+
 	out =
 		if CHEAT
 			[]

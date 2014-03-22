@@ -33,4 +33,7 @@ finish: |
 
 
 hint: |
-	HINT ME
+	To start you off:
+
+		ifOnly: rich ⇒
+			gotCar: buyCar	|pocketChange ifOnly#1

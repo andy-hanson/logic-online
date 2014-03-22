@@ -1,164 +1,43 @@
-@require 'font'
-
-centered()
-	margin-left auto
-	margin-right auto
-
-padding-x(amount)
-	padding-left amount
-	padding-right amount
-
-margin-x(amount)
-	margin-left amount
-	margin-right amount
-
-margin-y(amount)
-	margin-top amount
-	margin-bottom amount
-
-.textBubble
-	centered()
-	border-radius 40px
-	margin-top 20px
-	margin-bottom 20px
-	padding 20px
-	width 480px
-
-#code
-	centered()
-	width 800px
-
-.CodeMirror
-	code()
-	border-radius 15px
-	margin-v 5px
-	font-size 16px
-	height auto
-
-.CodeMirror-scroll
-	overflow-y hidden
-	overflow-x auto
-
-#buttons
-	centered()
-	border-radius 20px
-	padding 6px
-	margin-bottom 12px
-	width 320px
-	background linear-gradient(45deg, #ccc, #888)
-	text-align center
-
-#buttons button
-	margin 4px
-	border-radius 4px
-	border-style none
-	font-size 24px
-	background-color white
-#buttons button:hover
-	background-color yellow
-#checkButton
-	color forestGreen
-#exerciseButton
-	color dodgerBlue
-#hintButton
-	color orange
-#bragButton
-	color mediumOrchid
-#aboutButton
-	color black
-#aboutButton:hover
-	cursor help
-#githubButton
-	color pink
+@require 'layout'
 
 #about
-	background-color #ccf
+	background linear-gradient(0deg, #ccf, #fff)
 
-#brag
-	background linear-gradient(0deg, #ffc, #fff)
+#controls
+	background-color cyan
 
-#brag div
-	text-align center
+#contact
+	background-color yellow
 
-#brag .formTitle
-	formTitle()
 
-#brag input
-	denseText()
-	margin-bottom 16px
 
-#brag textarea
-	centered()
-	denseText()
-	width 400px
-	font-size 16px
-
-#bragSubmit
-	background forestGreen
-	color white
-	border-radius 10px
-	border-style none
-	centered()
-	formTitle()
-	font-size 150%
-
-#bragSubmit:hover
-	color yellow
-
-#exercises
+#exercisesList
 	background linear-gradient(135deg, #eff, #ffe)
 
+#freePlay
+	text-align center
+	font-fun()
+	font-size 28px
+#freePlay a
+	text-decoration none
+#freePlay a:hover
+	color cyan
+
+#exerciseTable
+	background-color #fff8
+	padding 10px
+	border-radius 20px
+	centered()
 .exerciseNumber
 	width 30px
 	text-align center
 .exerciseNumber a
-	number()
+	font-number()
 	text-align center
 	text-decoration none
 .exerciseNumber a:hover
 	color cyan
 
-.title
-	title()
-	margin-bottom 12px
-	font-size 28px
-	text-align center
-
-#explain
-	background linear-gradient(135deg, #ffe, #fef)
-
-#explain .title
-	color forestgreen
-
-#startProof
-	text-align center
-	title()
-	font-size 24px
-	color blue
-#startProof:hover
-	color purple
-	cursor pointer
-
-.md pre
-	background linear-gradient(0deg, #ffc080, #ffffc0)
-	border-radius 1em
-	margin-x 3em
-	padding 1em
-
-.md code
-	code()
-	background linear-gradient(0deg, #ffc080, #ffffc0)
-	border-radius 1em
-	padding-x 0.2em
-
-.md pre code
-	background none
-	border-radius none
-	padding-x 0
-
-
-#hint
-	background linear-gradient(135deg, #fef, #eff)
 
 #aboutKeys
 	centered()
@@ -169,37 +48,5 @@ margin-y(amount)
 	padding 5px
 
 .key
-	character()
+	font-character()
 	width 30px
-
-
-.checkResult
-	message()
-	text-align center
-	background-color white
-
-#checkSuccess
-	background radial-gradient(#dfb 50%, #ffd)
-	//background-color #dfb
-
-#nextExercise
-	text-decoration none
-
-#checkFail
-	background radial-gradient(#fcc 50%, #f88)
-
-
-.checkSuccessLine
-	lineNumber()
-	color #480
-
-
-.checkFailLine
-	lineNumber()
-	color red
-	margin 10px
-	vertical-align middle
-	font-size 150%
-
-.checkFailExplain
-	font-weight bold

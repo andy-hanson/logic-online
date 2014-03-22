@@ -15,15 +15,12 @@ CodeMirror.keyMap['lol-deduce'] =
 	'Ctrl-Alt--': means '¬'
 	'Ctrl-Alt-.': means '→'
 	'Ctrl-Alt-,': means '←'
-	# 'Shift-\\': means '│'
 	'Ctrl-Alt-8': means '⊕'
 	'Ctrl-Alt-A': means '∀'
 	'Ctrl-Alt-E': means '∃'
-	'Ctrl-Alt-[': (cm) ->
+	'Ctrl-Alt-;': (cm) ->
 		indent = indentation cm.getLine cm.getCursor().line
 		cm.replaceSelection "⇒\n\t#{indent}", 'end'
-	'Ctrl-Alt-C': (cm) ->
-		check()
 
 	fallthrough: CodeMirror.keyMap.default
 

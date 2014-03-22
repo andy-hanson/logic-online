@@ -1,11 +1,51 @@
+// @import 'codemirror.css'
 @require 'font'
+
+clickable()
+
+centered()
+	margin-left auto
+	margin-right auto
+
+padding-x(amount)
+	padding-left amount
+	padding-right amount
+
+margin-x(amount)
+	margin-left amount
+	margin-right amount
+
+margin-y(amount)
+	margin-top amount
+	margin-bottom amount
+
+border-radius-top(amount)
+	border-top-left-radius amount
+	border-top-right-radius amount
+
+border-radius-bottom(amount)
+	border-bottom-left-radius amount
+	border-bottom-right-radius amount
+
+.textBubble
+	centered()
+	border-radius 40px
+	margin-y 20px
+	padding 20px
+	width 480px
+
+.title
+	font-title()
+	margin-bottom 12px
+	font-size 28px
+	text-align center
 
 html
 	height 100%
 
 body
-	denseText()
-	background linear-gradient(-45deg, #bbb, #ddd)
+	font-dense-text()
+	background linear-gradient(-45deg, #aaa, #eee)
 	background-repeat no-repeat
 	background-attachment fixed
 	margin 0
@@ -20,3 +60,36 @@ body
 	background white
 	z-index 99
 
+
+
+#buttons
+	centered()
+	border-radius 20px
+	padding 2px
+	background linear-gradient(45deg, #ccc, #888)
+	text-align center
+
+#buttons button
+	margin-x 4px
+	padding-x 2px
+	width 36px
+	border-radius 12px
+	border-style none
+	font-size 24px
+	background-color white
+#buttons button:hover
+	background-color yellow
+#checkButton
+	color forestGreen
+#hintButton
+	color orange
+#bragButton
+	color mediumOrchid
+#exerciseButton
+	color dodgerBlue
+#aboutButton
+	color black
+#aboutButton:hover
+	cursor help
+#githubButton
+	color pink

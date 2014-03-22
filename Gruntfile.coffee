@@ -10,11 +10,11 @@ module.exports = (grunt) ->
 						[ 'assets/script/index.coffee' ]
 				options:
 					extensions: [ '.js', '.coffee' ]
-					transform: [ 'coffeeify' ] # , 'uglifyify'
-					debug: yes # enables source maps
+					transform: [ 'coffeeify', 'uglifyify' ]
+					#debug: yes # enables source maps
 
 		clean:
-			all: [ 'assets/exercise/list.yaml', 'doc', 'node_modules', 'public' ]
+			all: [ 'doc', 'node_modules', 'public' ]
 			pre: [ 'public' ]
 
 		codo:
@@ -84,9 +84,7 @@ module.exports = (grunt) ->
 				src: '**/*'
 				dest: 'public/image/'
 
-		exec:
-			listExercises:
-				'assets/exercise/gen-list.coffee'
+		#exec:
 			#dev:
 			#	options:
 			#		stdout: true
@@ -116,8 +114,7 @@ module.exports = (grunt) ->
 		'clean:pre',
 		'copy',
 		'browserify',
-		'stylus',
-		'exec:listExercises'
+		'stylus'
 	]
 
 	grunt.registerTask 'default', [

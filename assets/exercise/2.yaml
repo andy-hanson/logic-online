@@ -2,6 +2,7 @@ title: Slippery in Seattle
 
 explain: |
 	Some statements are implied by others.
+	They are called *implication*s.
 	For example:
 
 		rainy → wet
@@ -15,8 +16,8 @@ explain: |
 		wet |implication premise
 
 	This is a new type of justification: one that takes an *argument*.
-
-	Use `Ctrl+Alt+>` to type `→`.
+	In this case, the argument must be a line whose contents
+	equal the left side of the implication (`rainy`).
 
 setup: |
 	declare rainy wet slippery
@@ -36,4 +37,6 @@ finish: |
 	slippery	|repeat slipperySeattle
 
 hint: |
-	HINT ME
+	Here's your first step:
+
+		wetSeattle: wet  |rainIsWater seattle

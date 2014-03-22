@@ -1,0 +1,68 @@
+extends layout
+
+block style
+	// codemirror.css must come first; I overwrite some properties.
+	link(rel='stylesheet', href='/style/exercise.css')
+
+block content
+	div#buttons
+		button#checkButton(title='Check Proof')
+			i(class='fa fa-check')
+		button#hintButton(title='Hint')
+			i(class='fa fa-puzzle-piece')
+		button#bragButton(title='Brag')
+			i(class='fa fa-envelope')
+		a(href='..' target='_blank')
+			button#aboutButton(title='About')
+				i(class='fa fa-info-circle')
+
+	div#brag.hid.textBubble
+		form#bragForm
+			div.title Brag
+			div.formTitle Email To
+			div
+				input#emailTo(type='text')
+			div.formTitle Your Name
+			div
+				input#userName(type='text')
+			div.formTitle Comment
+			div
+				textarea#comment(rows=10)
+			div
+				input#bragSubmit(type='submit' value='Send')
+
+	div#checkResultContainer.hid
+		div#checkSuccess.checkResult.textBubble
+			div#checkSuccessWithPremises
+				span Valid proof!
+				span#checkSuccessNPremises
+				span premises on lines
+				span#checkSuccessPremises
+				span= '. '
+			div#checkSuccessNoPremises
+				span Valid proof! And you did it all without premises!
+			a#nextExercise
+				span= 'Next: Exercise '
+				span#nextExerciseNumber
+				// i(class = 'fa fa-forward')
+
+		div#checkFail.checkResult.textBubble
+
+	div#hint.textBubble.hid
+		div#hintTitle.title Hint
+		div#hintText.md
+
+	div#code.hid
+		div#setup
+		div#editor
+		div#finish
+
+	div#explain.textBubble
+		div.title
+			span= 'Exercise '
+			span#exerciseNumber
+			span= ' - '
+			span#exerciseTitle
+		div#explainText.md
+		div#startProof.
+			Let's deduce!

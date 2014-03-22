@@ -1,58 +1,23 @@
 $ = require 'jquery'
 
-codePromise = require './setup-code'
-checkProof = require './check-proof'
-getData = require './get-data'
-showExercise = require './show-exercise'
-showExercisesList = require './show-exercises-list'
-writeKeysTable = require './writeKeysTable'
-brag = require './brag'
+docReady = require './doc-ready'
+exercise = require './exercise'
+free = require './free'
 
-showDocument = (code) ->
-	for x in [ '#about', '#brag', '#code', '.checkResult', '#exercises', '#hint' ]
-		($ x).hide()
+last = (arr) ->
+	arr[arr.length - 1]
 
-	($ '#cover').fadeOut 300, ->
-		($ @).remove()
+end =
+	last window.location.href.split '/'
 
-	click = (buttonId, respond) ->
-		($ buttonId).unbind('click').click respond
+switch
+	when /\d+/.test end
+		exercise end
+	when end == 'free'
+		free()
+	when end == '' # index
+		docReady().then ->
+			($ '#cover').hide()
+	else
+		throw new Error "Unexpected URL: '#{end}'"
 
-	click '#checkButton', ->
-		checkProof code
-
-	click '#bragButton', ->
-		($ '#brag').toggle()
-
-	click '#aboutButton', ->
-		writeKeysTable()
-		($ '#about').toggle()
-
-	click '#hintButton', ->
-		($ '#hint').toggle()
-
-	click '#startProof', ->
-		($ '#code').show()
-		code.editor.refresh()
-		code.finish.refresh()
-
-	click '#exerciseButton', showExercisesList
-
-	($ '#bragForm').submit (event) ->
-		event.preventDefault()
-		brag code
-
-loadExercise = (exNum) ->
-	($.when (getData "exercise/#{exNum}"), codePromise).then (exercise, code) ->
-		exercise.number = exNum
-		showExercise code, exercise
-		showDocument code
-
-window.onhashchange = ->
-	# take off '#', exercise number is left
-	loadExercise if location.hash == '' then 1 else location.hash.slice 1
-
-window.onhashchange()
-
-#($ document).ready ->
-#	writeKeysTable()

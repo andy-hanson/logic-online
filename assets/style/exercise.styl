@@ -1,0 +1,132 @@
+@require 'layout'
+
+#buttons
+	width 200px
+	margin-bottom 12px
+
+#code
+	centered()
+	width 800px
+
+.CodeMirror
+	font-code()
+	font-size 16px
+	height auto
+
+.CodeMirror-scroll
+	overflow-y hidden
+	overflow-x auto
+
+#setup .CodeMirror
+	border-radius-top 20px
+
+#editor .CodeMirror
+	border-style solid
+	border-width 1px
+	border-color #aaa
+	margin-y 5px
+#editor .CodeMirror-focused
+	border-color black
+
+#finish .CodeMirror
+	border-radius-bottom 20px
+
+
+#brag
+	background linear-gradient(0deg, #ffc, #fff)
+
+#brag div
+	text-align center
+
+#brag .formTitle
+	font-form-title()
+
+#brag input
+	font-dense-text()
+	margin-bottom 16px
+
+#brag textarea
+	centered()
+	font-dense-text()
+	width 400px
+	font-size 16px
+
+#bragSubmit
+	background forestGreen
+	color white
+	border-radius 10px
+	border-style none
+	centered()
+	font-form-title()
+	font-size 150%
+
+#bragSubmit:hover
+	color yellow
+
+
+#explain
+	background linear-gradient(135deg, #ffe, #fef)
+
+#explain .title
+	color forestgreen
+
+#startProof
+	text-align center
+	font-fun()
+	font-size 28px
+	color blue
+#startProof:hover
+	color cyan
+	cursor pointer
+
+.md pre
+	background linear-gradient(0deg, #ffc080, #ffffc0)
+	border-radius 1em
+	margin-x 3em
+	padding 1em
+
+.md code
+	font-code()
+	background linear-gradient(0deg, #ffc080, #ffffc0)
+	border-radius 1em
+	padding-x 0.2em
+
+.md pre code
+	background none
+	border-radius none
+	padding-x 0
+
+
+#hint
+	background linear-gradient(135deg, #fef, #eff)
+
+
+.checkResult
+	font-message()
+	text-align center
+	background-color white
+
+#checkSuccess
+	background radial-gradient(#dfb 50%, #ffd)
+
+#nextExercise
+	text-decoration none
+
+#checkFail
+	background radial-gradient(#fcc 50%, #f88)
+
+
+.checkSuccessLine
+	font-line-number()
+	color #480
+
+
+.checkFailLine
+	font-line-number()
+	color red
+	margin 10px
+	vertical-align middle
+	font-size 150%
+
+.checkFailExplain
+	font-weight bold
