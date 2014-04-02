@@ -1,16 +1,18 @@
 fs = require 'fs'
 path = require 'path'
-yaml = require 'yamljs'
-
-env = (name) ->
-	process.env[name] ?
-		throw Error 'Need config.yaml or environment variable #{name}'
+yaml = require 'js-yaml'
 
 module.exports = do ->
 	cfg = path.join __dirname, './config.yaml'
 	if fs.existsSync cfg
-		yaml.parse fs.readFileSync cfg, 'utf8'
+		yaml.safeLoad fs.readFileSync cfg, 'utf8'
 	else
+		# Get it from environment variables.
+
+		env = (name) ->
+			process.env[name] ?
+				throw Error "Need config.yaml or environment variable #{name}"
+
 		appname: 'logic-online'
 		port: env 'PORT'
 		email:

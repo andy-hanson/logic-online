@@ -1,0 +1,35 @@
+title: TITLE ME
+
+explain: |
+	If you start with a contradiction,
+		you can disprove anything.
+	Deduction breaks down when there is a contradiction,
+		because it is based on the idea that there are none.
+
+setup: |
+	repeat a: a ⇒
+		a
+	can'tNot a: ¬a → ⊥ ⇒
+		a
+
+	declare x
+
+
+answerSetup: |
+	nonsense: ⊥ ⇒
+		...
+		x |_
+
+
+answer: |
+	nonsense: ⊥ ⇒
+		unlessX: ¬x ⇒
+			⊥	|repeat nonsense#1
+		x	|can'tNot unlessX
+
+
+finish: |
+	assert proven: ⊥ → x
+
+hint: |
+	TODO

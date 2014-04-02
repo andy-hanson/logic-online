@@ -1,22 +1,28 @@
 fs = require 'fs'
 path = require 'path'
-yaml = require 'yamljs'
+yaml = require 'js-yaml'
 
-nExercises = 3
+withoutEnd = (str, end) ->
+	str.slice 0, str.length - end.length
 
 allExercises = {}
 
-for index in [1..nExercises]
-	loc =
-		path.join __dirname, "../assets/exercise/#{index}.yaml"
+dir =
+	path.join __dirname, '../assets/exercise'
+
+order =
+	(fs.readFileSync (path.join dir, 'Order'), 'utf-8').trim().split '\n'
+
+for name, index in order
 	text =
-		fs.readFileSync loc, 'utf8'
+		fs.readFileSync (path.join dir, "#{name}.yaml"), 'utf-8'
 	mangledIndents =
 		text.replace /\n\t/g, '\n  '
 	exercise =
-		yaml.parse mangledIndents
-	exercise.index =
-		index
+		yaml.safeLoad mangledIndents
+	exercise.name = name
+	exercise.index = index
+
 	allExercises[index] = exercise
 
 

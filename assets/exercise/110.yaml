@@ -1,0 +1,40 @@
+title: TODO
+
+explain: |
+	TODO
+
+setup: |
+	contradiction a: a, ¬a ⇒
+		⊥
+	can't a: a → ⊥ ⇒
+		¬a
+	can'tNot a: ¬a → ⊥ ⇒
+		a
+
+	declare y z
+
+	yToZ:		y → z
+	notYToZ:	¬y → z
+
+answer: |
+	unlessZ: ¬z ⇒
+		ifY: y ⇒
+			soZ: z		|yToZ ifY#1
+			⊥			|contradiction soZ unlessZ#1
+		notY: ¬y		|can't ifY
+		soZ: z			|notYToZ notY
+		⊥				|contradiction soZ unlessZ#1
+	yDoesn'tMatter:	z	|can'tNot unlessZ
+
+finish: |
+	assert proven: z
+
+hint: |
+		unlessZ: ¬z ⇒
+			ifY: y ⇒
+				...
+				⊥
+			¬y
+			...
+			⊥
+

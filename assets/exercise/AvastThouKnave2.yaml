@@ -1,0 +1,40 @@
+title: Avast Thou Knave
+
+explain: |
+	Welcome to the island of knights and knaves!
+
+
+	Alice says: "We are both knaves."
+	Bob says: "Alice is a knave."
+
+setup: |
+	unConjunctL a b: a ∧ b ⇒
+		a
+	contradiction a: a, ¬a  ⇒
+		⊥
+	can't a: a → ⊥ ⇒
+		¬a
+
+	declare alice bob
+
+	aliceSays: alice → (¬alice ∧ ¬bob)
+	bobSays: bob → ¬alice
+
+answer: |
+	ifAlice: alice ⇒
+		1: ¬alice ∧ ¬bob	|aliceSays ifAlice#1
+		2: ¬alice			|unConjunctL 1
+		⊥					|contradiction ifAlice#1 2
+	noAlice: ¬alice	|can't ifAlice
+
+	ifBob: bob ⇒
+		1: alice	|bobSays ifBob#1
+		⊥			|contradiction 1 noAlice
+	¬bob	|can't ifBob
+
+finish: |
+	assert decided: alice, bob
+
+hint: |
+	TODO
+

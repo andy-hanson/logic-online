@@ -1,0 +1,49 @@
+title: No Baby No
+
+explain: |
+	A slightly more complex rule than `can't` is `can'tNot`:
+
+		unlessA: ¬a ⇒
+			⊥
+		a	|can'tNot unlessA
+
+	This allows you to *remove* negations, something `can't` couldn't do.
+
+	You'll find that `can'tNot` is *the* go-to method to use.
+	When trying to prove something, imagine it not being the case.
+
+	Often people make statements like "Oh, well, see, I wasn't *not* satisfied..."
+	Prove that these people are too wordy.
+	They could have just said "I was satisfied!" *Geez!*
+
+	By the way, this is called
+		[Double Negation Elimination](
+		http://www.proofwiki.org/wiki/Double_Negation/Double_Negation_Elimination).
+
+setup: |
+	contradiction a: a, ¬a ⇒
+		⊥
+	can'tNot a: ¬a → ⊥ ⇒
+		a
+
+	declare iAmSatisfied
+
+	wordy: ¬¬iAmSatisfied
+
+answer: |
+	unless: ¬iAmSatisfied ⇒
+		⊥			|contradiction unless#1 wordy
+	iAmSatisfied	|can'tNot unless
+
+finish: |
+	assert proven: iAmSatisfied
+
+hint: |
+	This one's all about using `can'tNot`. There's really only one way to do it!
+	Here's a template:
+
+		unless: ¬iAmSatisfied ⇒
+			⊥			|_
+
+		iAmSatisfied	|_
+

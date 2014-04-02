@@ -3,9 +3,9 @@ html
 	body
 		span#userName
 			= userName
-		span  completed exercise #{''}
-		a(href=exerciseURL)#exerciseNumber
-			= exerciseNumber
+		span= ' completed exercise '
+		a(href=exerciseURL)#exerciseName
+			= exerciseName
 		span .
 		if comment
 			span  They said:

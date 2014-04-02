@@ -1,65 +1,83 @@
 emailTemplates = require 'email-templates'
 nodeMailer = require 'nodemailer'
 path = require 'path'
+validator = require 'validator'
+q = require 'q'
 lolDeduce = require 'lol-deduce'
-
-templatesDir = path.join __dirname, 'email-templates'
-
-emailInfo = (require './config').email
-
-transport = nodeMailer.createTransport 'SMTP', emailInfo
-
 { getExercise } = require './all-exercises'
 
+emailInfo = (require './config').email
+transport = nodeMailer.createTransport 'SMTP', emailInfo
+
+templatesDir = path.join process.cwd(), 'assets/email-templates'
+
 
 ###
-@param bragData [{ userName, emailTo, exerciseNum, solution, comment }]
+@param bragData [{
+	userName, emailFrom, emailTo, exerciseName, solution, comment }]
 ###
 
-module.exports = brag = (bragData, res) ->
-	exercise = getExercise bragData.exerciseNumber
+module.exports = brag = (req, res) ->
+	bragData = req.body
 
-	checkRes = lolDeduce.checkExercise exercise.setup, bragData.solution, exercise.finish
+	exercise = getExercise bragData.exerciseName
 
-	msg = (content) ->
-		res.send content
-		res.end()
-	nuts = (error) ->
-		if error?
-			console.log error
-			msg
+	bragData.exerciseURL =
+		"#{req.protocol}://#{req.get 'host'}/exercise/#{bragData.exerciseName}"
+
+	checkRes =
+		lolDeduce.checkExercise exercise.setup, bragData.solution, exercise.finish
+
+	checkEmail = (email) ->
+		unless ok = validator.isEmail email
+			res.send
 				success: no
-				explain: "There was a problem emailing: #{error}"
+				explain: "Not an email address: #{email}"
+		ok
 
-	if checkRes instanceof lolDeduce.InvalidProof
-		msg
+	unless (checkEmail bragData.emailFrom) and checkEmail bragData.emailTo
+		null # done
+
+	else if checkRes instanceof lolDeduce.InvalidProof
+		res.send
 			success: no
-			explain: checkRes.message # TODO: line no. too
+			explain: "Bad proof: #{checkRes.toString()}"
 
 	else
-		emailTemplates templatesDir, (err, template) ->
-			nuts err
+		emailPromise = (opts) ->
+			q.ninvoke transport, 'sendMail',
+				from: opts.from
+				to: opts.to
+				subject: opts.subject
+				html: opts.html
+				generateTextFromHtml: yes
 
-			bragData.exerciseURL =
-				"http://logic-online.herokuapp.com/##{bragData.exerciseNumber}"
+		(q.nfcall emailTemplates, templatesDir)
+		.then (template) ->
+			q.nfcall template, 'exercise-completed', bragData
+		.then (htmlAndText) ->
+			html = htmlAndText[0]
 
-			template 'exercise-completed', bragData, (err, html, text) ->
-				nuts err
-
-				console.log emailInfo
-
-				transport.sendMail
-					from: emailInfo.from
-					to: bragData.emailTo
-					subject:
-						"[Logic Online] #{bragData.userName} completed " +
-						"exercise #{bragData.exerciseNumber}"
-					html: html
-					generateTextFromHtml: yes
-				, (err, responseStatus) ->
-					nuts err
-					console.log responseStatus.message
-
-					msg
-						success: yes
-
+			emailPromise
+				from: bragData.emailFrom
+				to: bragData.emailTo
+				subject:
+					"[Logic Online] #{bragData.userName} completed " +
+					"exercise #{bragData.exerciseName}"
+				html: html
+			html
+		.then (html) ->
+			emailPromise
+				from: emailInfo.from
+				to: bragData.emailFrom
+				subject:
+					"[Logic Online] You bragged to #{bragData.emailTo}"
+				html: html
+		.then ->
+			res.send
+				success: yes
+		.fail (error) ->
+			console.log error
+			res.send
+				success: no
+				explain: "There was a problem emailing: #{error}"

@@ -1,0 +1,75 @@
+title: Reversible Recipe
+
+explain: |
+	Today, you get new tool: the *supposition*.
+	For example:
+
+		suppose: a ⇒
+			a	|repeat suppose#1
+
+		a → a	|repeat suppose
+
+	(Hold `Alt` and press `:` to type `⇒`.)
+
+	We assume `a` within the indented *body*,
+		even though we don't know whether it is true.
+	Only lines in the body can access the supposed statement, `suppose#1`.
+
+	This example contains no *premises*;
+		`a` is not stated, just considered.
+	A supposition is always logically valid,
+		even if the assumed statement is flat-out wrong.
+
+	Now, back outside of the body, when we reference `suppose`,
+		the whole thing is collapsed into `a → a`.
+
+	Remember the meaning of `a → b`; *if* `a`, then `b`.
+	If `a` is false, it effectively says nothing.
+	So, of course `a → a`; it's another way of saying that statements may be repeated.
+
+	One more example:
+
+		rainIsWater: rainy → wet
+		waterIsSlick: wet → slick
+
+		seattle: rainy ⇒
+			then: wet	|rainIsWater seattle#1
+			c			|waterIsSlick then
+
+		rainy → slick	|repeat seattle
+
+	Your proof from last time can be done with `rainy` as an unknown.
+	By the way, this is known as a
+	[Hypothetical Syllogism](http://www.proofwiki.org/wiki/Hypothetical_Syllogism).
+
+	Now you'll have to prove one way in which implications can be reordered.
+	If you can satisfy `avocado` and then `salsa` to get `guacamole`,
+	then you can satisfy `salsa` and then `avocado` for the same result.
+	(This can be done without `repeat`.)
+
+setup: |
+	declare avocado salsa guacamole
+
+	\ Parentheses allow one statement to be part of another.
+	\ In other words, 'avocado → sg' where sg is 'salsa → guacamole'.
+	ingredients: avocado → (salsa → guacamole)
+
+answerSetup: |
+	_: _ ⇒
+		_: _ ⇒
+			...
+			guacamole |_
+
+answer: |
+	ifSalsa: salsa ⇒
+		ifAvocado: avocado ⇒
+			1: salsa → guacamole |ingredients ifAvocado#1
+			guacamole |1 ifSalsa#1
+
+finish: |
+	assert proven: salsa → (avocado → guacamole)
+
+hint: |
+	The desired result says: "If `salsa`, then if `avocado`, then `guacamole`."
+
+	So, suppose `salsa`, and inside of that, suppose `avocado`.

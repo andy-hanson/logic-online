@@ -11,8 +11,8 @@ end =
 	last window.location.href.split '/'
 
 switch
-	when /\d+/.test end
-		exercise end
+	when res = /.*\/exercise\/(.+)/.exec window.location.href
+		exercise res[1]
 	when end == 'free'
 		free()
 	when end == '' # index

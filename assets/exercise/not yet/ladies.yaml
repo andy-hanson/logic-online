@@ -1,0 +1,52 @@
+title: TODO
+
+explain: |
+	Today we introduce `=`.
+
+		aIsB: a = b
+		yesA: a
+		b	|sameL aIsB yesA
+
+	We can also do:
+
+		aIsB: a = b
+		yesB: b
+		a	|sameR aIsB yesB
+
+setup: |
+	sameL a b: a = b, a ⇒
+		b
+	sameR a b: a = b, b ⇒
+		a
+	both a b: a, b ⇒
+		a = b
+	neither a b: ¬a, ¬b ⇒
+		a = b
+
+	declare s1 s2 l1 l2
+
+	s1 = (l1 ∧ ¬l2)
+	s2 = ¬(l1 ∧ l2)
+	¬(s1 = s2)
+
+answer: |
+	ifS1: s1 ⇒
+		¬l2
+		l1 ∧ l2 ⇒
+			l2
+			⊥
+		¬(l1 ∧ l2)
+		s2
+		s1 ∧ s2
+		⊥
+	¬s1
+	¬s2 ⇒
+		s1 = s2 |neither
+		⊥
+	¬s2
+
+finish: |
+	assert decided: s1, s2
+
+hint: |
+	TODO

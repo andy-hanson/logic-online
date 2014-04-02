@@ -1,0 +1,41 @@
+title: Are You A Mexican't or a Mexican'tNot?
+
+explain: |
+	Or: "Can't Not" can "Can't"; "Can't" can't "Can't Not"!
+
+	In the last few exercises we've used `can'tNot` instead of `can't`.
+	Granted, it's more complicated. But it does things that `can't`, well, can't.
+
+	You may want to look back at "No Baby No";
+		you will need to do a *Double Negation Elimination* here, too.
+
+setup: |
+	contradiction a: a, ¬a ⇒
+		⊥
+	can'tNot a: ¬a → ⊥ ⇒
+		a
+
+	declare zionistConspiracy
+
+	isCrazy: zionistConspiracy → ⊥
+
+answer: |
+	unlessNot: ¬¬zionistConspiracy ⇒
+		unless: ¬zionistConspiracy ⇒
+			⊥	|contradiction unless#1 unlessNot#1
+		plain: zionistConspiracy	|can'tNot unless
+		⊥	|isCrazy plain
+	¬zionistConspiracy	|can'tNot unlessNot
+
+finish: |
+	assert proven: ¬zionistConspiracy
+
+hint: |
+	`can'tNot` always removes one negation.
+	So to get to one negation, start with two:
+
+		unlessNot: ¬¬zionistConspiracy ⇒
+			...
+			⊥	|_
+		¬zionistConspiracy	|_
+

@@ -1,0 +1,66 @@
+title: Lawyer Island
+
+explain: |
+	All this deduction is tiring!
+	You decide to go on vacation.
+	Unfortunately, your plane was built illogically,
+	and you crash on an uncharted island.
+
+	Around here, everything is upside-down.
+	Lawyers roam the land looking for an honest day's work.
+	They are courteous, respectful, and always tell the truth.
+
+	You meet two trustworthy-looking people and ask them if they are lawyers.
+
+	Alice says, "Bob is a lawyer."
+
+	Bob says, "If Alice is a lawyer, I'm not."
+
+	Looks like you won't get that vacation after all.
+	You puzzle it over but just can't figure it out.
+	Deduction to the rescue!
+
+	You represent truthfulness with variables: `alice`, `bob`.
+	You represent claims with implication:
+		if alice claims Bob is truthful, `alice → bob`.
+
+	Now, decide whether alice is telling the truth.
+	(To *decide* a statement is to prove or disprove it.)
+
+setup: |
+	contradiction a: a, ¬a  ⇒
+		⊥
+	can't a: a → ⊥ ⇒
+		¬a
+
+	declare alice bob
+
+	\ According to Alice, Bob is a lawyer.
+	soSaysAlice: alice → bob
+
+	\ According to Bob, if Alice is a lawyer, he isn't.
+	soSaysBob: bob → (alice → ¬bob)
+
+answer: |
+	ifAlice: alice ⇒
+		1: bob			|soSaysAlice ifAlice#1
+		2: alice → ¬bob	|soSaysBob 1
+		3: ¬bob			|2 ifAlice#1
+		⊥				|contradiction 1 3
+
+	¬alice	|can't ifAlice
+
+finish: |
+	assert decided: alice
+
+hint: |
+	Suppose that alice is telling the truth.
+	You'll get a contradiction.
+	Any one who claims a contradiction is no lawyer, that's for sure!
+	In other words:
+
+		ifAlice: alice ⇒
+			...
+			⊥	|_
+
+		¬alice	|can't ifAlice

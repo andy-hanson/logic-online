@@ -45,7 +45,7 @@ hideResult = (immediate = no) ->
 
 module.exports = ->
 	docReady().then ->
-		code = makeCodeMirror 'code',
+		code = makeCodeMirror ($ '#code'),
 			autofocus: yes
 
 

@@ -1,4 +1,4 @@
-title: Intro of Interesting Intrigue
+title: Intro of Intrigue
 
 explain: |
 	Welcome to Logic Online!
@@ -21,7 +21,9 @@ explain: |
 
 		declare x
 
-	Then you can state that it is true by simply writing it.
+	This doesn't yet say that it is true,
+		just that it is up for consideration.
+	To actually state it, write it on its own line.
 
 		x
 
@@ -47,8 +49,7 @@ explain: |
 	You shouldn't be writing any premises;
 	every line you write should be justified.
 
-
-	Now you're ready for **your first exercise**.
+	Now you're ready for your first exercise.
 	You'll have to fill in the middle of the proof shown below.
 	The top and bottom parts can't be modified.
 
@@ -58,12 +59,12 @@ explain: |
 	Press the <i class='fa fa-check'/> button when you're done.
 
 setup: |
-	\ This describes repeat within our language.
+	\ This describes 'repeat' within our language.
 	\ Don't worry how it works just yet.
 	repeat a: a ⇒
 		a
 
-	\ This says that x is a Boolean we can refer to.
+	\ This ensures that 'x' can be referred to.
 	declare x
 
 	\ Here is a premise.
@@ -73,6 +74,9 @@ setup: |
 	\ Now let's use that premise.
 	\ This line is *justified* by the rule "repeat" applied to the line "yesX".
 	revengeOfX: x	|repeat yesX
+
+answerSetup: |
+	xRidesAgain: _ |_
 
 answer: |
 	xRidesAgain: x	|repeat yesX

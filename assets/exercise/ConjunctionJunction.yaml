@@ -1,0 +1,47 @@
+title: Conjunction Junction
+
+explain: |
+	Sometimes you know more than one thing.
+	(I sure hope so.)
+	If you do, you can represent it with `∧`:
+
+		a ∧ b
+
+	(Hold `Alt` and press `^` to type `∧`.)
+
+	This is called a *conjunction*.
+	It is a one-line equivalent of putting them on different lines:
+
+		a \ and also
+		b
+
+	You'll need a few rules to convert between the two formats.
+	`conjunct` takes two lines and puts them in a conjunction.
+	`unConjunctL` and `unConjunctR` take the conjunction and split it back into lines.
+
+	Today, Mario and Luigi are arguing over who gets top billing.
+	Prove that the two are logically equivalent.
+
+setup: |
+	conjunct a b: a, b ⇒
+		a ∧ b
+	unConjunctL a b: a ∧ b ⇒
+		a
+	unConjunctR a b: a ∧ b ⇒
+		b
+
+	declare starsMario starsLuigi
+
+	original: starsMario ∧ starsLuigi
+
+answer: |
+	m: starsMario			|unConjunctL original
+	l: starsLuigi			|unConjunctR original
+	starsLuigi ∧ starsMario	|conjunct l m
+
+finish: |
+	assert proven: starsLuigi ∧ starsMario
+
+hint: |
+	First, `unConjunct` the brothers apart.
+	Then `conjunct` them back together in the opposite order.

@@ -1,0 +1,52 @@
+title: Slick in Seattle
+
+explain: |
+	Some facts are implied by others.
+	For example:
+
+		rainy → wet
+
+	(Hold `Alt` and press `>` to type `→`.)
+	Every time it is `rainy`, it is `wet`.
+	This is called an *implication*.
+
+	`a → b` does not mean that `a` *causes* `b`,
+	just that `b` is true when `a` is.
+	For example, you could say `sleepy → stayedUpLate`.
+	If `a` is false, the implication means nothing.
+	So you could say `logicIsUncool → upIsDown`.
+	(`a` is called the *antecedent* and `b` the *consequent*.)
+
+	We can use this like so:
+
+		premise: rainy
+		implication: rainy → wet \ This is also a premise
+		wet |implication premise
+
+	When applying an implication,
+	you must provide a line identical to the antecedent,
+	in this case `rainy`.
+
+setup: |
+	declare rainy wet slick
+
+	rainIsWater: rainy → wet
+	waterIsSlick: wet → slick
+	seattle: rainy
+
+answerSetup: |
+	...
+	slickSeattle: slick |_
+
+answer: |
+	wetSeattle: wet  |rainIsWater seattle
+	slick |waterIsSlick wetSeattle
+
+finish: |
+	\ Prove that `slick` or this will fail.
+	assert proven: slick
+
+hint: |
+	Here's your first step:
+
+		wetSeattle: wet  |rainIsWater seattle

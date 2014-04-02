@@ -1,4 +1,3 @@
-// @import 'codemirror.css'
 @require 'font'
 
 clickable()
@@ -27,6 +26,10 @@ border-radius-bottom(amount)
 	border-bottom-left-radius amount
 	border-bottom-right-radius amount
 
+grad-bg(color-a, color-b, angle=to bottom right)
+	background linear-gradient(angle, color-a, color-b)
+
+
 .textBubble
 	centered()
 	border-radius 40px
@@ -45,7 +48,7 @@ html
 
 body
 	font-dense-text()
-	background linear-gradient(-45deg, #aaa, #eee)
+	grad-bg #aaa, #eee, -45deg
 	background-repeat no-repeat
 	background-attachment fixed
 	margin 0
@@ -66,7 +69,7 @@ body
 	centered()
 	border-radius 20px
 	padding 2px
-	background linear-gradient(45deg, #ccc, #888)
+	grad-bg #ccc, #888
 	text-align center
 
 #buttons button
@@ -85,11 +88,19 @@ body
 	color orange
 #bragButton
 	color mediumOrchid
-#exerciseButton
-	color dodgerBlue
-#aboutButton
+#loadButton
+	color magenta
+#saveButton
+	color maroon
+#homeButton
 	color black
-#aboutButton:hover
-	cursor help
-#githubButton
-	color pink
+#homeButton:hover
+	cursor pointer
+
+
+
+.cm-bad-whitespace
+	border-style solid
+	border-color black
+	border-width 1px
+

@@ -1,0 +1,46 @@
+title: Nope Nope Nope
+
+explain: |
+	What if I like it big and wordy?
+	What if I like to say stupid stuff like "not unlike"?
+	Prove that I'm not wrong!
+
+	This would be a lot easier if I gave you `can't`,
+		but instead, I give you `can'tNot`.
+	Since `can'tNot` removes negations,
+		you'll have to start with three of them and work your way down!
+
+	By the way, this is called
+		[Double Negation Introduction](
+		http://www.proofwiki.org/wiki/Double_Negation/Double_Negation_Introduction).
+
+setup: |
+	contradiction a: a, ¬a ⇒
+		⊥
+	can'tNot a: ¬a → ⊥ ⇒
+		a
+
+	declare alike
+
+	plain: alike
+
+answer: |
+	neg3: ¬¬¬alike ⇒
+		neg2: ¬¬alike ⇒
+			⊥	|contradiction neg2#1 neg3#1
+		not: ¬alike	|can'tNot neg2
+		⊥	|contradiction plain not
+	¬¬alike	|can'tNot neg3
+
+finish: |
+	assert proven: ¬¬alike
+
+hint: |
+	Use:
+
+		neg3: ¬¬¬alike ⇒
+			neg2: ¬¬alike ⇒
+				⊥ |_
+			¬alike |_
+			⊥
+		¬¬alike	|_

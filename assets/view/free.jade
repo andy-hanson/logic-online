@@ -10,15 +10,15 @@ block content
 		div#buttons
 			button#checkButton(title='Check Proof')
 				i(class='fa fa-check')
-			a(href='..' target='_blank')
-				button#aboutButton(title='About')
-					i(class='fa fa-info-circle')
 			button#loadButton(title='Load File')
 				i(class='fa fa-cloud-upload')
 			input#loadFile(type='file' accept='text' style='display:none')
 			button#saveButton(title='Save File')
 				i(class='fa fa-cloud-download')
 			input#saveFile(type='file' accept='text' style='display:none')
+			a(href='..')
+				button#homeButton(title='About')
+					i(class='fa fa-home')
 	div#result
 	div#codeContainer
 		div#code

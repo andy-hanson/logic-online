@@ -1,27 +1,24 @@
 $ = require 'jquery'
 setupCodeMirror = require './setup-code-mirror'
 
-module.exports = (elementID, extraOptions) ->
+module.exports = makeCodeMirror = (selector, extraOptions) ->
 	setupCodeMirror()
 
 	options =
-		mode: 'lol-deduce'
+		autoClearEmptyLines: yes
 		indentUnit: 4
 		indentWithTabs: yes
-		viewportMargin: Infinity
-		lineNumbers: yes
 		keyMap: 'lol-deduce'
+		lineNumbers: yes
+		mode: 'lol-deduce'
+		viewportMargin: Infinity
 
-	if extraOptions?
-		$.extend options, extraOptions
+	$.extend options, extraOptions
 
-	domEm = (name) ->
-		($ "##{name}").get 0
+	domEm = selector.get 0
 
-	element = $ "##{elementID}"
+	cm = CodeMirror domEm, options
 
-	cm = CodeMirror (element.get 0), options
-
-	element.data 'codeMirror', cm
+	selector.data 'codeMirror', cm
 
 	cm

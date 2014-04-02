@@ -1,0 +1,81 @@
+title: Negative Nancy
+
+explain: |
+	Some things just aren't so:
+
+		¬leprechaunsInMySockDrawer
+
+	(Hold `Alt` and press `-` to type `¬`.)
+
+	This is called a *negation*.
+
+	A valid statement and its negation can't both be true.
+	This is fundamental to deduction.
+
+	When we find such a situation, we can conclude:
+
+		no: ¬newTaxes
+		yes: newTaxes
+		hey: ⊥	|contradiction yes no
+
+	(Hold `Alt` and press `F` to type `⊥`).
+
+	This is called a *contradiction*.
+
+	It effectively tells you to stop deducing and start over.
+	So when is it useful?
+	You can *check your premises*; one of them must have been wrong.
+
+	If you are inside of a supposition body, you can conclude
+	that you started out wrong.
+	For example, if the butler has an alibi, he can't have committed the murder.
+
+		maybeIf: butlerDidIt ⇒
+			butlerWasHereAtTimeOfMurder
+			¬butlerWasHereAtTimeOfMurder
+			⊥
+
+		¬butlerDidIt	|can't maybeIf
+
+	This rule is called `can't`, because `butlerDidIt` just *can't* be so.
+
+	Be sure not to forget what premises your statements depend upon;
+	if you must reject a premise, all you did based on it was for nought!
+
+	Earlier we said that `a → b` says nothing if `¬a`.
+	But as you can see, it helps if we don't know yet whether `¬a`.
+	If `¬b`, the implication is forced into saying 'nothing'.
+	If it said something, it would be wrong:
+		if `a` were true, there would be a contradiction of `b` and `¬b`.
+
+	Now, prove that if a statement is false,
+		any conjunction involving it is false.
+
+setup: |
+	unConjunctL a b: a ∧ b ⇒
+		a
+	contradiction a: a, ¬a ⇒
+		⊥
+	can't a: a → ⊥ ⇒
+		¬a
+
+	declare gotTouch gotPower
+
+	someAintGotIt: ¬gotTouch
+
+
+answer: |
+	ifTouchAndPower: gotTouch ∧ gotPower ⇒
+		first: gotTouch	|unConjunctL ifTouchAndPower#1
+		⊥				|contradiction first someAintGotIt
+
+	¬(gotTouch ∧ gotPower)	|can't ifTouchAndPower
+
+finish: |
+	assert proven: ¬(gotTouch ∧ gotPower)
+
+hint: |
+	Suppose that `gotTouch ∧ gotPower`.
+	`unConjunctL` the first part away: `gotTouch`.
+	This contradicts the premise that `someAintGotIt`.
+	Get a contradicion, then negate your supposition.

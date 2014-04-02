@@ -10,7 +10,7 @@ params = require 'express-params'
 routes = require './routes'
 config = require './config'
 
-exports.app = (app) ->
+module.exports = (app) ->
 	rootPath = process.cwd()
 
 	app.set 'port', config.port
@@ -29,16 +29,13 @@ exports.app = (app) ->
 	injector.inject app,
 		env: app.settings.env
 
-exports.router = (app) ->
-	exerciseRouter = express.Router()
-	exerciseRouter.post '/brag', routes.brag
-
-	params.extend exerciseRouter
-	exerciseRouter.param 'exerciseNumber', Number
-	exerciseRouter.get '/:exerciseNumber', (req, res) ->
-		res.render 'exercise.jade'
-
-	app.use '/exercise', exerciseRouter
+	# Routing
 
 	app.get '/', routes.index
+	app.post '/brag', routes.brag
 	app.get '/free', routes.free
+
+	params.extend app
+	app.param 'exerciseName', String
+	app.get '/exercise/:exerciseName', (req, res) ->
+		res.render 'exercise.jade'

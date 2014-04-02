@@ -33,7 +33,25 @@
 
 
 #brag
-	background linear-gradient(0deg, #ffc, #fff)
+	grad-bg #ffc, #fff
+
+.bragResult
+	centered()
+	font-size 20px
+	margin-bottom 8px
+	border-radius 12px
+
+#bragSuccess
+	@extend .bragResult
+	width 100px
+	background greenyellow
+
+#bragFail
+	@extend .bragResult
+	width 300px
+	font-fail()
+	color white
+	background darkred
 
 #brag div
 	text-align center
@@ -65,10 +83,15 @@
 
 
 #explain
-	background linear-gradient(135deg, #ffe, #fef)
+	grad-bg #ffe, #fef
 
 #explain .title
 	color forestgreen
+
+#explain .CodeMirror
+	centered()
+	width 400px
+	border-radius 20px
 
 #startProof
 	text-align center
@@ -79,46 +102,31 @@
 	color cyan
 	cursor pointer
 
-.md pre
-	background linear-gradient(0deg, #ffc080, #ffffc0)
-	border-radius 1em
-	margin-x 3em
-	padding 1em
 
 .md code
 	font-code()
-	background linear-gradient(0deg, #ffc080, #ffffc0)
+	grad-bg #ffffc0, #ffc080
 	border-radius 1em
 	padding-x 0.2em
 
-.md pre code
-	background none
-	border-radius none
-	padding-x 0
-
-
 #hint
-	background linear-gradient(135deg, #fef, #eff)
+	grad-bg #fef, #eff
 
 
 .checkResult
-	font-message()
 	text-align center
-	background-color white
 
 #checkSuccess
+	@extend .checkResult
+	font-message()
 	background radial-gradient(#dfb 50%, #ffd)
 
 #nextExercise
 	text-decoration none
 
 #checkFail
+	@extend .checkResult
 	background radial-gradient(#fcc 50%, #f88)
-
-
-.checkSuccessLine
-	font-line-number()
-	color #480
 
 
 .checkFailLine
@@ -129,4 +137,6 @@
 	font-size 150%
 
 .checkFailExplain
+	font-fail()
+	font-size 20px
 	font-weight bold

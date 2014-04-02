@@ -10,8 +10,8 @@ module.exports = (grunt) ->
 						[ 'assets/script/index.coffee' ]
 				options:
 					extensions: [ '.js', '.coffee' ]
-					transform: [ 'coffeeify', 'uglifyify' ]
-					#debug: yes # enables source maps
+					transform: [ 'coffeeify', 'brfs' ] #, 'uglifyify'
+					debug: yes # enables source maps
 
 		clean:
 			all: [ 'doc', 'node_modules', 'public' ]
@@ -19,11 +19,11 @@ module.exports = (grunt) ->
 
 		codo:
 			options:
-				inputs: [ 'assets/script' ]
+				inputs: [ 'server', 'assets/script' ]
 				output: 'doc'
 
 		coffeelint:
-			app: [ 'assets/script/**/*.coffee' ]
+			app: [ 'server/**/*.coffee', 'assets/script/**/*.coffee' ]
 			options:
 				camel_case_classes:
 					level: 'error'
@@ -58,13 +58,13 @@ module.exports = (grunt) ->
 				tasks: [ 'copy:image' ]
 			exercise:
 				files: 'assets/exercise/**/*'
-				tasks: [ 'copy:exercise', 'exec:listExercises' ]
+				tasks: [ 'copy:exercise' ]
 
 		stylus:
 			files:
 				expand: yes
 				cwd: 'assets/style'
-				src: [ '**/*.*' ]
+				src: [ 'index.styl', 'exercise.styl', 'free.styl', 'vendor/codemirror.css' ]
 				dest: 'public/style'
 				ext: '.css'
 			options:

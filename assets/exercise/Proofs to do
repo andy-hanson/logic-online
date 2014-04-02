@@ -1,0 +1,84 @@
+Proofs to do:
+
+
+
+denialAffirms: ~a -> a => a
+	~a =>
+		a
+		⊥
+	a |can'tNot
+
+deniesSelf: a -> ~a => ~a
+	a =>
+		(a -> ~a) =>
+			~a |MP
+		~(a -> ~a) |can't
+	~a |can't
+
+
+
+
+
+
+AFTER 'OR'
+
+axioms:
+	either: a => a v b
+	neither: ~a, ~b => ~(a v b)
+
+boolean: a v ~a
+	~(a v ~a) =>
+		a =>
+			a v ~a
+		~a
+		a v ~a
+
+
+cases: a v b, a -> c, b -> c => c
+
+
+vArrange: a v b => b v a
+	a =>
+		b v a
+	b =>
+		b v a
+	b v a |cases
+
+demorgan: ~(a & b) => ~a v ~b
+	1: ¬(¬A ∨¬B) ⇒
+		2: A ⇒
+			3: B ⇒
+				4: A ∧ B
+			4: ¬B		|absurd 3→4, in1
+			5: ¬A ∨¬B	|∨short-circuit 4
+		6: ¬A			|absurd 2→5, 1
+		7: ¬A ∨¬B		|∨short-circuit 6
+	¬A ∨¬B				|denial-affirms 1→7
+
+DeMOrgan
+	rule DeMorgan: ¬A ∨ ¬B ⇒ ¬(A ∧ B)
+		1: (A ∧ B) ⇒
+			A
+		1: ¬A ⇒
+			2: ¬(A ∧ B)	|∧short-circuit
+		3: ¬B ⇒
+			4: ¬(A ∧ B)	|∧short-circuit
+		¬(A ∧ B)		|cases in1, 1→2, 3→4
+
+
+	rule DeMorgan: ¬(A ∨ B) ⇒ ¬A ∧ ¬B
+		1: A
+			2: A ∨ B	|∨short-circuit 1
+		3: ¬A			|absurd 1→2, in1
+		4: B
+			5: A ∨ B	|∨short-circuit 3
+		6: ¬B			|absurd 4→5, in1
+		¬A ∧ ¬B			|both 3, 6
+
+
+	rule DeMorgan: ¬A ∧ ¬B ⇒ ¬(A ∨ B)
+		1: ¬A		|drop in1
+		2: ¬B		|drop in1
+		3: ¬(A ∨ B)	|neither 1 2
+
+

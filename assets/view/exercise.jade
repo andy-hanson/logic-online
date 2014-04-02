@@ -12,41 +12,41 @@ block content
 			i(class='fa fa-puzzle-piece')
 		button#bragButton(title='Brag')
 			i(class='fa fa-envelope')
-		a(href='..' target='_blank')
-			button#aboutButton(title='About')
-				i(class='fa fa-info-circle')
+		a(href='..')
+			button#homeButton(title='About')
+				i(class='fa fa-home')
 
-	div#brag.hid.textBubble
+	div#brag.textBubble.hid
+		div#bragSuccess.hid.
+			Success!
+		div#bragFail.hid
 		form#bragForm
 			div.title Brag
-			div.formTitle Email To
-			div
-				input#emailTo(type='text')
 			div.formTitle Your Name
 			div
 				input#userName(type='text')
+			div.formTitle Your Email
+			div
+				input#emailFrom(type='text')
+			div.formTitle Email To
+			div
+				input#emailTo(type='text')
 			div.formTitle Comment
 			div
-				textarea#comment(rows=10)
+				textarea#comment(rows=8)
 			div
 				input#bragSubmit(type='submit' value='Send')
 
 	div#checkResultContainer.hid
-		div#checkSuccess.checkResult.textBubble
-			div#checkSuccessWithPremises
-				span Valid proof!
-				span#checkSuccessNPremises
-				span premises on lines
-				span#checkSuccessPremises
-				span= '. '
-			div#checkSuccessNoPremises
-				span Valid proof! And you did it all without premises!
+		div#checkSuccess.textBubble
+			div.
+				Valid proof!
 			a#nextExercise
 				span= 'Next: Exercise '
 				span#nextExerciseNumber
 				// i(class = 'fa fa-forward')
 
-		div#checkFail.checkResult.textBubble
+		div#checkFail.textBubble
 
 	div#hint.textBubble.hid
 		div#hintTitle.title Hint
@@ -58,11 +58,7 @@ block content
 		div#finish
 
 	div#explain.textBubble
-		div.title
-			span= 'Exercise '
-			span#exerciseNumber
-			span= ' - '
-			span#exerciseTitle
+		div.title#exerciseTitle
 		div#explainText.md
 		div#startProof.
 			Let's deduce!

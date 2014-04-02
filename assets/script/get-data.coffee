@@ -1,7 +1,7 @@
 $ = require 'jquery'
-yaml = require 'yamljs'
+yaml = require 'js-yaml'
 
 module.exports = getData = (name, callBack) ->
 	($.ajax "#{name}.yaml").then (text) ->
 		mangledIndents = text.replace /\n\t/g, '\n  '
-		yaml.parse mangledIndents
+		yaml.safeLoad mangledIndents

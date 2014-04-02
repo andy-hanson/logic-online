@@ -1,0 +1,45 @@
+title: If It Ain't Broke...
+
+explain: |
+	Last time you saw that for every statement `a → b`, `¬b` can get you `a`.
+	This smells ripe for a formal statement: `a → b ⇒ ¬b → ¬a`.
+	This is read as "If a implies b, then not-b implies not-a."
+	The symbol `⇒` means that a deduction can be done.
+	(And if a deduction can be done, then you can deduce `(a → b) → (¬b → ¬a)`
+		by supposing `a → b`.)
+
+	Now it's your turn to do that deduction: prove
+		[Contraposition](
+		http://www.proofwiki.org/wiki/Rule_of_Transposition);
+		a conditional can be reversed by negating both sides.
+
+setup: |
+	contradiction a: a, ¬a ⇒
+		⊥
+	can't a: a → ⊥ ⇒
+		¬a
+
+	declare fixIt broke
+
+	\ If you're bothering to fix it, it had better be broke.
+	purposeOfFixing: fixIt → broke
+
+answerSetup: |
+	ain'tBroke: _ ⇒
+		...
+
+answer: |
+	ain'tBroke: ¬broke ⇒
+		ifFix: fixIt ⇒
+			withPurpose: broke	|purposeOfFixing ifFix#1
+			⊥					|contradiction withPurpose ain'tBroke#1
+		¬fixIt					|can't ifFix
+
+finish: |
+	assert proven: ¬broke → ¬fixIt
+
+hint: |
+	This requires a supposition inside a supposition.
+	First suppose `¬broke`. Then inside of there, suppose `fixIt`.
+	In this innermost block you can deduce a contradiction.
+	So in the first block, where you supposed `¬broke`, you can conclude `¬fixIt`.
