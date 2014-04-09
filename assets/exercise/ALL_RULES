@@ -20,3 +20,9 @@ can't a: a → ⊥ ⇒
 
 can'tNot a: ¬a → ⊥ ⇒
 	a
+
+bothSo a b: a, b ⇒
+	a = b
+
+bothNot a b: ¬a, ¬b ⇒
+	a = b

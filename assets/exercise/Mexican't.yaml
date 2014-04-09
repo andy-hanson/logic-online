@@ -1,13 +1,25 @@
 title: Are You A Mexican't or a Mexican'tNot?
 
 explain: |
-	Or: "Can't Not" can "Can't"; "Can't" can't "Can't Not"!
+	Or: `can'tNot` can `can't`; `can't` can't `can'tNot`!
+
+	Remember these two rules:
+
+		1: a → ⊥
+		¬a	|can't 1
+
+		2: ¬a → ⊥
+		a	|can'tNot 2
 
 	In the last few exercises we've used `can'tNot` instead of `can't`.
-	Granted, it's more complicated. But it does things that `can't`, well, can't.
+	It's more complicated!
+	But it does things that `can't`, well, can't.
+	For example, *Double Negation Elimination*
+		(see ["No Baby No"](/exercise/NoBabyNo)).
 
-	You may want to look back at "No Baby No";
-		you will need to do a *Double Negation Elimination* here, too.
+	`can't` is only good for adding negations - `can'tNot` can remove them.
+
+	Now, prove that using `can'tNot`, you can do what you could with `can't`.
 
 setup: |
 	contradiction a: a, ¬a ⇒

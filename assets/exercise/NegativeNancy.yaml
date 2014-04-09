@@ -1,7 +1,7 @@
 title: Negative Nancy
 
 explain: |
-	Some things just aren't so:
+	Some things just ain't so:
 
 		¬leprechaunsInMySockDrawer
 
@@ -10,7 +10,7 @@ explain: |
 	This is called a *negation*.
 
 	A valid statement and its negation can't both be true.
-	This is fundamental to deduction.
+	(This is fundamental to deduction.)
 
 	When we find such a situation, we can conclude:
 
@@ -26,9 +26,11 @@ explain: |
 	So when is it useful?
 	You can *check your premises*; one of them must have been wrong.
 
-	If you are inside of a supposition body, you can conclude
-	that you started out wrong.
-	For example, if the butler has an alibi, he can't have committed the murder.
+	In other words,
+		if you are inside of a supposition body and find a contradiction,
+		you can conclude that you started out wrong.
+	For example, if the butler has an alibi,
+		he can't have committed the murder.
 
 		maybeIf: butlerDidIt ⇒
 			butlerWasHereAtTimeOfMurder

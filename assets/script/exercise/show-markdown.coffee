@@ -10,8 +10,12 @@ module.exports = showMarkdown = (elementId, text) ->
 	($ "##{elementId} pre").replaceWith ->
 		em = ($ '<div/>').addClass 'codeMirrorContainer'
 
+		code =
+			# marked replaces tabs with spaces. Undo that!
+			($ @).text().trim().replace /\s\s\s\s/g, '\t'
+
 		makeCodeMirror em,
-			value: ($ @).text().trim()
+			value: code
 			lineNumbers: no
 			readOnly: yes
 		em

@@ -1,6 +1,9 @@
 Hi! I am logic-online!
 
-You'll have to configure it like so:
+Running
+---
+
+	npm install lol-deduce
 
 	heroku config:add \
 		EMAIL_FROM=“my.email@gmail.com” \

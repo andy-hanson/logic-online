@@ -12,6 +12,8 @@
 		"url": "https://github.com/andy-hanson/logic-online.git"
 	},
 	"dependencies": {
+		"lol-deduce": "0.0.6",
+
 		"express": "4.0.0-rc3",
 		"express-params": "0.0.3",
 		"body-parser": "1.0.0",

@@ -1,0 +1,40 @@
+title: With Equality and Logic for All
+
+explain: |
+	When two statements are both true or both false, we call them *equal*.
+	They of course both mean different things; as do `2 + 2` and `4`.
+	What matters is that *evaluating* the statements produces the same result.
+
+		same: a = b
+		one: a
+		other: b	||same one
+		a			||same other
+
+	As you can see, an equality acts like a two-way implication.
+	In fact, an equality is equivalent to a two-way implication!
+	Over the next few exercises, you'll prove it.
+	This time: prove that an equality implies a two-way implication.
+
+setup: |
+	declare logic cool
+
+	raisonDEtre: logic = cool
+
+answerSetup: |
+
+
+answer: |
+	forth: logic ⇒
+		cool	|raisonDEtre forth#1
+
+	back: cool ⇒
+		logic	|raisonDEtre back#1
+
+finish: |
+	assert proven: logic → cool
+	assert proven: cool → logic
+
+hint: |
+	Suppose logic, get cool.
+	Suppose cool, get logic.
+	4 lines. No items. Final Destination.

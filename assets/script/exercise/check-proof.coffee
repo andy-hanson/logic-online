@@ -6,14 +6,16 @@ module.exports = checkProof = (code) ->
 
 	console.log ((code.exercise.setup).split '\n').length
 
-	out = lolDeduce.checkExercise code.exercise.setup, code.getEditorContent(), code.exercise.finish
+	out =
+		lolDeduce.checkExercise \
+			code.exercise.setup,
+			code.getEditorContent(),
+			code.exercise.finish
 
 	success = $ '#checkSuccess'
 	fail = $ '#checkFail'
 
 	if out instanceof lolDeduce.InvalidProof
-		console.log '!'
-
 		fail
 		.empty()
 		.append (($ '<span/>').addClass 'checkFailLine').text out.pos().line()

@@ -1,0 +1,71 @@
+title: With Logic and Equality for All
+
+explain: |
+	Yesterlogic you proved that
+		if `logic = cool`, then `logic → cool` and `cool → logic`.
+	Now prove it the other way around.
+
+	In other words, what you're proving is like the rule:
+
+		mutualImplication a b: a → b, b → a ⇒
+			a = b
+
+	Once you've done that, you can see that they are the same.
+
+		1: (logic = cool) → (logic → cool ∧ cool → logic)
+
+		2: ((logic → cool) ∧ (cool → logic)) → (logic = cool)
+
+		3: (logic = cool) = ((logic → cool) ∧ (cool → logic)) |mutualImplication 1 2
+
+setup: |
+	bothSo a b: a, b ⇒
+		a = b
+	bothNot a b: ¬a, ¬b ⇒
+		a = b
+
+	contradiction a: a, ¬a  ⇒
+		⊥
+	can't a: a → ⊥ ⇒
+		¬a
+	can'tNot a: ¬a → ⊥ ⇒
+		a
+
+	logicIsCool: logic → cool
+	coolIsLogic: cool → logic
+
+answerSetup: |
+
+answer: |
+	unlessEqual: ¬(logic = cool) ⇒
+		ifLogic: logic ⇒
+			1: cool				|logicIsCool
+			2: logic = cool		|bothSo ifLogic#1 1
+			⊥					|contradiction 2 unlessEqual#1
+		noLogic: ¬logic			|can't ifLogic
+		ifCool: cool ⇒			|illogicIsLame 1
+			1: logic			|coolIsLogic ifCool#1
+			⊥					|contradiction 1 noLogic
+		noCool: ¬cool			|can't ifCool
+		neither: logic = cool	|bothNot noLogic noCool
+		⊥						|contradiction neither unlessEqual#1
+
+	logic = cool	|can'tNot unlessEqual
+
+finish: |
+	assert proven: logic = cool
+
+hint: |
+	Work backwards from the conclusion.
+	There are 3 rules that will let you conclude a statement looking like `logic = cool`;
+		but `bothSo` and `bothNot` require that you know the values of both.
+	Instead, use `can'tNot`.
+
+		unlessEqual: ¬(logic = cool) ⇒
+			...
+			⊥
+
+		logic = cool	|can'tNot unlessEqual
+
+	(Inside of there, prove `¬logic` and `¬cool` using `can't`.)
+
