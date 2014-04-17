@@ -23,11 +23,11 @@ for name, index in order
 	exercise.name = name
 	exercise.index = index
 
-	allExercises[index] = exercise
+	allExercises[name] = exercise
 
 
 module.exports =
 	allExercises: allExercises
 
-	getExercise: (num) ->
-		allExercises[parseInt num] ? throw new Error "Bad exercise number: #{n}"
+	getExercise: (name) ->
+		allExercises[name] ? throw new Error "Bad exercise name: #{name}"

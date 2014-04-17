@@ -20,6 +20,5 @@ module.exports = showMarkdown = (elementId, text) ->
 			readOnly: yes
 		em
 
-	#TODO: div ?
-	($ "##{elementId} .codeMirrorContainer").each (it) ->
+	($ "##{elementId} .codeMirrorContainer").each ->
 		(($ @).data 'codeMirror').refresh()

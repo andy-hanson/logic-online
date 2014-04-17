@@ -4,8 +4,6 @@ lolDeduce = require 'lol-deduce'
 module.exports = checkProof = (code) ->
 	($ '#checkResultContainer').slideDown()
 
-	console.log ((code.exercise.setup).split '\n').length
-
 	out =
 		lolDeduce.checkExercise \
 			code.exercise.setup,
@@ -23,8 +21,6 @@ module.exports = checkProof = (code) ->
 
 		success.hide()
 		fail.show()
-
-		console.log '?'
 
 	else
 		fail.hide()

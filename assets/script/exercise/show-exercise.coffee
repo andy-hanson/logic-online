@@ -4,8 +4,6 @@ showMarkdown = require './show-markdown'
 module.exports = showExercise = (code) ->
 	ex = code.exercise
 
-	console.log ex.explain
-
 	showMarkdown 'explainText', ex.explain
 	showMarkdown 'hintText', ex.hint
 	($ '#exerciseTitle').text ex.title
