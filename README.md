@@ -1,6 +1,8 @@
-Hi! I am logic-online!
+This project includes a deduction language and a user interface for learning it.
+Currently on hiatus.
+You can try it out [here](http://logic-online.herokuapp.com).
 
-Running
+Running Your Own
 ---
 
 	npm install lol-deduce
